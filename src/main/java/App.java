@@ -1,5 +1,3 @@
-package P11;
-
 /**
  * Hello world!
  *
