@@ -1,21 +1,8 @@
-name: Build, test and deploy MAven Package
-
-on: [push]
-
+name: Publish package to GitHub Packages
+on:
+  release:
+    types: [created]
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package
-
   publish:
     runs-on: ubuntu-latest
     permissions:
@@ -30,4 +17,4 @@ jobs:
       - name: Publish package
         run: mvn --batch-mode deploy
         env:
-          GITHUB_TOKEN: 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
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
