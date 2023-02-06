@@ -30,4 +30,4 @@ jobs:
       - name: Publish package
         run: mvn --batch-mode deploy
         env:
-          GITHUB_TOKEN: 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
+          GITHUB_TOKEN: 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
