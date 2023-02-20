@@ -3,15 +3,15 @@ import org.junit.jupiter.api.Test;
 
 public class bedsAreAvailableTest extends TestCase {
     @Test
-     void testIdHospital2Has4Beds(){
+     void testIdHospital2HasAtLeastOneFreeBed(){
         //Arrange
         int hospitalId = 2;
-        BedsAreAvailable bedsAreAvailable = new BedsAreAvailable();
+        Bed bed = new Bed();
 
         //Act
-        int bedsCount = bedsAreAvailable.count(hospitalId);
+        boolean atLeastOneBedIsAvailable = bed.isAvailable(hospitalId);
 
         //Asserts
-        assertEquals(4, bedsCount);
+        assertEquals(true, atLeastOneBedIsAvailable);
     }
 }
