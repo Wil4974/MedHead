@@ -1,20 +1,14 @@
 package poc.unitTests;
 
-import jakarta.annotation.Resource;
-import org.antlr.v4.runtime.misc.LogManager;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import poc.AppMedheadPoc;
-import poc.H2JpaConfig;
 import poc.model.Speciality;
 import poc.repository.SpecialityRepository;
 import poc.util.GetSpecialityIdWithSpecialityName;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,7 +18,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest(classes = {AppMedheadPoc.class, H2JpaConfig.class})
+@SpringBootTest
 public class GetSpecialityNameWithSpecialityIdTest {
 
     @Autowired
