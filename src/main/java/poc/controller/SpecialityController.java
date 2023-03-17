@@ -19,7 +19,7 @@ public class SpecialityController {
         return specialityService.getSpecialities();
     }
 
-    @PostMapping("/add:{name}")
+    @PostMapping("/add")
     public ResponseEntity<Speciality> createSpeciality(@RequestBody Speciality speciality){
         Speciality newSpeciality = specialityService.addSpeciality(speciality);
         return ResponseEntity.ok(newSpeciality);

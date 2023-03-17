@@ -12,7 +12,7 @@ public class GetClosestHospital {
 
         for(Hospital hospital : allHospitals){
             double distanceToHospital = GetDistance.BetweenTwoPoints(latitudePosition, longitudePosition, hospital.getLatitude(), hospital.getLongitude());
-            if (shortestDistance > distanceToHospital )
+            if (shortestDistance > distanceToHospital)
             {
                 closestHospital = hospital;
             }

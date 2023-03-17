@@ -46,7 +46,6 @@ public class GetSpecialityNameWithSpecialityIdTest {
             int id;
 
             //Act
-            System.out.println("sdfsdfg");
             id = GetSpecialityIdWithSpecialityName.FromFile(specialityName, allSpecialities);
 
             //Asserts

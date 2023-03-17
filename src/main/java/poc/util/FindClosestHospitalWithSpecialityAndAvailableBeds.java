@@ -5,12 +5,9 @@ import java.util.List;
 
 public class FindClosestHospitalWithSpecialityAndAvailableBeds {
 
-    public static String name(String args) {
-        String[] positionAndSpecialities = args.split(":");
-        double latitude = Double.parseDouble(positionAndSpecialities[0]);
-        double longitude = Double.parseDouble(positionAndSpecialities[1]);
-        String speciality = positionAndSpecialities[2];
-        int specialityId = GetSpecialityIdWithSpecialityName.FromDataBase(speciality);
+    public static String name(Double latitude, Double longitude, String specialityName) {
+
+        int specialityId = GetSpecialityIdWithSpecialityName.FromDataBase(specialityName);
         List<Hospital> hospitalWithThisSpeciality = GetHospitalWithSpecialityId.FromDataBase(specialityId);
 
         if (hospitalWithThisSpeciality.size() > 1) {

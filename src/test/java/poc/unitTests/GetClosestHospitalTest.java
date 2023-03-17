@@ -27,8 +27,6 @@ public class GetClosestHospitalTest {
         allHospitals.add(new Hospital(1, "Fred Brooks", 51.4739,-0.0684, 2));
         allHospitals.add(new Hospital(2, "Julia Crusher", 51.47303, -0.01523, 0));
         allHospitals.add(new Hospital(3, "Beverly Bashir", 51.5031, -0.1528, 5));
-        //FillDataBase.WithSpecialities();
-        //FillDataBase.WithHospitals();
     }
 
     @BeforeEach

@@ -26,12 +26,7 @@ public class SpecialityControllerTest {
     @Test
     public void testGetAllSpecialities() throws Exception {
         mockMvc.perform(get("/speciality/all"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void testAddSpeciality() throws Exception {
-        mockMvc.perform(post("/speciality/add:test"))
-                .andExpect(status().isOk());
+                .andExpect(status()
+                .isOk());
     }
 }

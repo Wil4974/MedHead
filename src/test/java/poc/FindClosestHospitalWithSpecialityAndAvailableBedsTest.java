@@ -28,12 +28,12 @@ public class FindClosestHospitalWithSpecialityAndAvailableBedsTest {
         System.out.println("Début des tests");
     }
     @ParameterizedTest(name = "Hôpital le plus proche : {0}")
-    @CsvSource({"Fred Brooks, 51.48312:-0.11593:Cardiologie", "Beverly Bashir, 51.48312:-0.11593:Neuropathologie diagnostique"})
-    public void getClosestHospitalWithSpecialityAndAvailableBedsFromFile(String expectResult, String envoiPositionAndSpeciality){
+    @CsvSource({"Fred Brooks, 51.48312, -0.11593, Cardiologie", "Beverly Bashir, 51.48312, -0.11593, Neuropathologie diagnostique"})
+    public void getClosestHospitalWithSpecialityAndAvailableBedsFromFile(String expectResult, Double latitude, Double longitude, String specialityName){
         //Arrange - See @CsvSource
 
         //Act
-        String nameHospital = FindClosestHospitalWithSpecialityAndAvailableBeds.name(envoiPositionAndSpeciality);
+        String nameHospital = FindClosestHospitalWithSpecialityAndAvailableBeds.name(latitude, longitude, specialityName);
 
         //Asserts
         assertEquals(expectResult, nameHospital);

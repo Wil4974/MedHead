@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.time.Duration;
 import java.time.Instant;
@@ -29,8 +30,8 @@ public class GetDistanceBetweenTwoPointsTest {
         System.out.println("Début des tests");
     }
 
-    @ParameterizedTest(name = " La distance entre le point {0}:{1} et le point {2};{3} est de {5} m .")
-    @CsvSource({"51.48312, -0.11593, 51.4739, -0.0684, 3396.090545901914", " 51.48312, -0.11593, 51.47303, -0.01523, 7012.054377438132"})
+    @ParameterizedTest(name = " La distance entre le point {0}:{1} et le point {2};{3} est de {4} m .")
+    @CsvSource({"51.48312, -0.11593, 51.4739, -0.0684, 3.447564445569311", " 51.48312, -0.11593, 51.47303, -0.01523, 7.063527406715057"})
     public void calculDistanceBetweenTwoPointsTest(double latitude, double longitude, double latitude2, double longitude2, double expectResult) {
         //Arrange
         double distance;

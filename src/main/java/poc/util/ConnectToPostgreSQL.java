@@ -23,7 +23,9 @@ public class ConnectToPostgreSQL {
 
             //étape 2: créer l'objet de connexion
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/medhead_poc","wil","wil");
+                    "jdbc:postgresql://localhost:5432/medhead_poc",
+                    "wil",
+                    "wil");
 
             //étape 3: créer l'objet statement
             Statement stmt = conn.createStatement();
