@@ -1,4 +1,4 @@
-package poc;
+package poc.IntegrationTests;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;

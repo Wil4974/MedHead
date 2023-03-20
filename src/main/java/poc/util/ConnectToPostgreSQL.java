@@ -21,7 +21,7 @@ public class ConnectToPostgreSQL {
             Class.forName("org.postgresql.Driver");
 
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/medhead_poc",
+                    "jdbc:postgresql://localhost:5432/medhead",
                     "wil",
                     "wil");
 
@@ -49,7 +49,7 @@ public class ConnectToPostgreSQL {
             Class.forName("org.postgresql.Driver");
 
             Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/medhead_poc","wil","wil");
+                    "jdbc:postgresql://localhost:5432/medhead","wil","wil");
 
             Statement stmt = conn.createStatement();
             ResultSet res = stmt.executeQuery("select h.id, h.name, latitude, longitude, available_beds, hs.speciality_id  from hospital h, hospital_specialities hs WHERE h.id = hs.hospital_id");
@@ -73,7 +73,7 @@ public class ConnectToPostgreSQL {
         try
         {
             Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medhead_poc","wil","wil");
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medhead","wil","wil");
 
             Statement stmt = conn.createStatement();
             ResultSet res = stmt.executeQuery("select h.id, h.name, latitude, longitude, available_beds from hospital h");
