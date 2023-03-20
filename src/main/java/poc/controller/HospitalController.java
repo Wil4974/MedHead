@@ -1,11 +1,9 @@
 package poc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import poc.model.Hospital;
 import poc.service.HospitalService;
-import poc.util.FindClosestHospitalWithSpecialityAndAvailableBeds;
 
 import java.util.List;
 

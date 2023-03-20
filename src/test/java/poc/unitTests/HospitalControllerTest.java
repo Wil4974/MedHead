@@ -6,9 +6,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import poc.controller.HospitalController;
-import poc.model.Hospital;
 import poc.service.HospitalService;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -19,7 +17,7 @@ public class HospitalControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private HospitalService specialityService;
+    private HospitalService hospitalService;
 
     @Test
     public void testGetAllHospitals() throws Exception {

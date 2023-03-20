@@ -1,6 +1,7 @@
 package poc.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import poc.model.Speciality;
 import poc.repository.SpecialityRepository;
 import org.springframework.stereotype.Service;
@@ -9,9 +10,7 @@ import java.util.List;
 
 @Service
 public class SpecialityService {
-
-    @Autowired
-    private final SpecialityRepository specialityRepository;
+    private SpecialityRepository specialityRepository;
 
     public SpecialityService(SpecialityRepository specialityRepository) {
         this.specialityRepository = specialityRepository;

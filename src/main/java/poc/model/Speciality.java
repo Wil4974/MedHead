@@ -1,13 +1,16 @@
 package poc.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Table(name = "Speciality")
+@Getter
+@Setter
 public class Speciality {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(length = 50, nullable = false)
@@ -26,17 +29,4 @@ public class Speciality {
         this.id = id;
         this.name = name;
     };
-    public int getId(){
-        return id;
-    }
-    public void setId(int id){
-        this.id = id;
-    }
-
-    public String getName(){
-        return name;
-    }
-    public void setName(String name){
-        this.name = name;
-    }
 }
