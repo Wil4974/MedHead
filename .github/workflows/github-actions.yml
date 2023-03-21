@@ -1,4 +1,4 @@
-name: Build, Test ant try to Publish package to GitHub Packages
+name: Launch docker compose
 run-name: ${{ github.actor }} is launching Docker Compose
 
 on:
