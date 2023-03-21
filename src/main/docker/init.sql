@@ -31,7 +31,7 @@ CREATE TABLE public.hospital_specialities (
 
 insert into public.hospital_specialities (hospital_id, speciality_id)
 values (1, 1),
-		(1, 2),
+	    (1, 2),
 		(2, 1),
 		(3, 2),
 		(3, 3);
