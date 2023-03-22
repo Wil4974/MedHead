@@ -1,22 +1,49 @@
-name: Launch docker compose
-run-name: ${{ github.actor }} is launching Docker Compose
+name: Docker Compose
 
 on:
   push:
-    branches: [ main ]
-    paths:
-      - docker-compose.yml
-      - Dockerfile
+    branches:
+      - main
 
 jobs:
-  run_docker_compose:
+  build:
     runs-on: ubuntu-latest
-
+    services:
+      db:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: wil
+          POSTGRES_PASSWORD: wil
+          POSTGRES_DB: medhead
+      app:
+        image: app:latest
     steps:
-    - name: Launch end run containers
-      uses: actions/checkout@v3
-      run: docker compose -f docker-compose.yml build
-    - run: echo "🍏 This job's status is ${{ job.status }}."
+      - uses: actions/checkout@v2
+      - name: Build and run containers
+        run: |
+          docker-compose up --build -d
+
+
+
+#name: Launch docker compose
+#run-name: ${{ github.actor }} is launching Docker Compose
+
+#on:
+  #push:
+    #branches: [ main ]
+    #paths:
+      #- docker-compose.yml
+      #- Dockerfile
+
+#jobs:
+  #run_docker_compose:
+    #runs-on: ubuntu-latest
+
+    #steps:
+    #- name: Launch end run containers
+      #uses: actions/checkout@v3
+      #run: docker compose -f docker-compose.yml build
+    #- run: echo "🍏 This job's status is ${{ job.status }}."
 
     #- uses: actions/checkout@v3
     #- name: Set up JDK 11
