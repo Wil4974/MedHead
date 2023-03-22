@@ -1,33 +1,34 @@
-name: Docker Compose
+name: Launch containersand test them
 
 on:
   push:
     branches:
       - master
 
-  container:
-    image: ghcr.io/owner/image
-    credentials:
-      username: ${{ github.actor }}
-      password: ${{ secrets.ghcr_token }}
-
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    services:
-      db:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: wil
-          POSTGRES_PASSWORD: wil
-          POSTGRES_DB: medhead
-      app:
-        image: app:latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Build and run containers
-        run: |
-          docker-compose up --build -d
+      - name: Check out code
+        uses: actions/checkout@v2
+        
+      - name: Run docker-compose
+        run: docker-compose up --build -d
+
+      
+      #db:
+        #image: postgres:latest
+        #env:
+          #POSTGRES_USER: wil
+          #POSTGRES_PASSWORD: wil
+          #POSTGRES_DB: medhead
+      #app:
+        #image: app:latest
+    #steps:
+      #- uses: actions/checkout@v2
+      #- name: Build and run containers
+        #run: |
+          #docker-compose up --build -d
 
 
 
