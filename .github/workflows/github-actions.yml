@@ -6,14 +6,14 @@ on:
       - master
 
 jobs:
-  #launch_docker_compose:
-    #runs-on: ubuntu-latest
-    #steps:
-      #- name: Check out code 
-      #  uses: actions/checkout@v3
+  launch_docker_compose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code 
+        uses: actions/checkout@v3
  
-      #- name: Run docker-compose
-        #run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
+      - name: Run docker-compose
+        run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
 
   test:
     runs-on: ubuntu-latest
