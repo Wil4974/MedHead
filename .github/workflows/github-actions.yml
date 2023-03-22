@@ -12,9 +12,6 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
         
-      - name: Go to docker folder
-        uses: ./src/main/docker/docker-compose.yml
-        
       - name: Run docker-compose
         run: docker-compose up --build -d
 
