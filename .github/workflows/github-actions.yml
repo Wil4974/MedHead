@@ -9,11 +9,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
+      - name: Check out code 
         uses: actions/checkout@v2
         
       - name: Run docker-compose
-        run: ./src/main/docker/docker-compose.yml docker-compose up --build -d
+        run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
 
       
       #db:
