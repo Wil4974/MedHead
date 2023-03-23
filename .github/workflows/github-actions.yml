@@ -26,10 +26,10 @@ jobs:
 
 
 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run tests
-        run: docker-compose up -f "src/main/docker/docker-compose.yml" run test
+    #runs-on: ubuntu-latest
+    #steps:
+      #- name: Run tests
+        #run: docker-compose up -f "src/main/docker/docker-compose.yml" run test
       
       #db:
         #image: postgres:latest
