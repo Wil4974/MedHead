@@ -23,9 +23,8 @@ public class GetSpecialityNameWithSpecialityIdTest {
 
     @Autowired
     private SpecialityRepository specialityRepository;
-    static Instant startedAt;
-
     static List<Speciality> allSpecialities = new ArrayList<>();
+    static Instant startedAt;
 
     @BeforeAll
     static public void initStartingTime() {

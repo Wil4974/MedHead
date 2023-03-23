@@ -16,13 +16,7 @@ public class Speciality {
     @Column(length = 50, nullable = false)
     private String name;
 
-    public Speciality(){
-        super();
-    };
-    public Speciality(String name){
-        super();
-        this.name = name;
-    };
+    public Speciality(){};
 
     public Speciality(int id, String name){
         super();

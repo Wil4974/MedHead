@@ -1,6 +1,9 @@
 package poc.unitTests;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import poc.model.Hospital;
+import poc.model.Speciality;
+import poc.repository.HospitalRepository;
 import poc.util.GetHospitalWithSpecialityId;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -20,10 +23,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GetHospitalsWithSpecialityIdTest {
     static Instant startedAt;
 
+    @Autowired
+    private HospitalRepository hospitalRepository;
+    static List<Hospital> allHospitals = new ArrayList<>();
     @BeforeAll
     static public void initStartingTime() {
         System.out.println("Appel avant tous les tests");
         startedAt = Instant.now();
+        allHospitals.add(new Hospital(1, "Fred Brooks", 51.4739,-0.0684, 2));
+        allHospitals.add(new Hospital(2, "Julia Crusher", 51.47303, -0.01523, 0));
+        allHospitals.add(new Hospital(3, "Beverly Bashir", 51.5031, -0.1528, 5));
     }
 
     @BeforeEach
@@ -73,7 +82,6 @@ public class GetHospitalsWithSpecialityIdTest {
         //Asserts
         assertEquals(expectHospital.size(), hospitalWihtSpecialityId.size());
     }
-
     @AfterEach
     public void undefGetClosestHospitalTest() {
         System.out.println("Fin des tests");

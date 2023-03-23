@@ -1,8 +1,5 @@
 package poc.util;
 
-import java.text.DecimalFormat;
-import java.util.Formatter;
-
 public class GetDistance {
     /**
      * Calculate distance between two points in latitude and longitude taking
@@ -30,18 +27,5 @@ public class GetDistance {
         distance = Math.pow(distance, 2);
 
         return Math.sqrt(distance);
-    }
-    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    /*::  This function converts decimal degrees to radians             :*/
-    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    private double deg2rad(double deg) {
-        return (deg * Math.PI / 180.0);
-    }
-
-    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    /*::  This function converts radians to decimal degrees             :*/
-    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    private double rad2deg(double rad) {
-        return (rad * 180.0 / Math.PI);
     }
 }
