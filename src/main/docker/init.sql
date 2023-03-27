@@ -1,16 +1,17 @@
 CREATE TABLE public.speciality (
 	id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-	"name" varchar(50) NOT NULL
+	groupName varchar(50) NOT NULL,
+	name varchar(50) NOT NULL
 );
 
-insert into public.speciality  (name)
-values ('Cardiologie'),
-		('Immunologie'),
-		('Neuropathologie diagnostique');
+insert into public.speciality  (groupName, name)
+values ('Groupe de médecine générale', 'Cardiologie'),
+		('Groupe de pathologie', 'Immunologie'),
+		('Groupe de pathologie', 'Neuropathologie diagnostique');
 
 CREATE TABLE public.hospital (
 	id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-	"name" varchar(50) NOT NULL,
+	name varchar(50) NOT NULL,
   	latitude real NOT NULL,
   	longitude real NOT NULL,
   	available_beds int NOT NULL

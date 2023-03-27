@@ -12,17 +12,17 @@ public class Speciality {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @Column(length = 50, nullable = false)
-    private String group_name;
+    private String groupName;
     @Column(length = 50, nullable = false)
     private String name;
 
     public Speciality(){};
 
-    public Speciality(int id, String name){
+    public Speciality(int id, String groupName, String name){
         super();
         this.id = id;
+        this.groupName = groupName;
         this.name = name;
     };
 }

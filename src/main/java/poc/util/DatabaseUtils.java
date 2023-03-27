@@ -29,7 +29,7 @@ public class DatabaseUtils {
             ResultSet res = stmt.executeQuery("SELECT * FROM speciality");
 
             while(res.next())
-                allSpecialities.add(new Speciality(res.getInt(1), res.getString(2)));
+                allSpecialities.add(new Speciality(res.getInt(1), res.getString(2), res.getString(3)));
 
             conn.close();
 
