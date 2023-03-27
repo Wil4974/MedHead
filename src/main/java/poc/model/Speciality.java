@@ -14,6 +14,8 @@ public class Speciality {
     private int id;
 
     @Column(length = 50, nullable = false)
+    private String group_name;
+    @Column(length = 50, nullable = false)
     private String name;
 
     public Speciality(){};

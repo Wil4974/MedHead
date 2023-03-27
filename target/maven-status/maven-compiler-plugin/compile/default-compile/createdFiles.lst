@@ -9,8 +9,8 @@ poc/util/GetDistance.class
 poc/util/GetHospitalsWithAvailableBeds.class
 poc/service/SpecialityService.class
 poc/util/ConnectToPostgreSQL.class
-poc/repository/SpecialityRepository.class
 poc/util/GetHospitalWithSpecialityId.class
+poc/repository/SpecialityRepository.class
 poc/service/HospitalService.class
 poc/AppMedheadPoc.class
 poc/model/Speciality.class

@@ -2,10 +2,8 @@ package poc.unitTests;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import poc.AppMedheadPoc;
 import poc.model.Speciality;
 import poc.repository.SpecialityRepository;
-import poc.util.GetSpecialityIdWithSpecialityName;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

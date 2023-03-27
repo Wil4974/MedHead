@@ -2,9 +2,7 @@ package poc.unitTests;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import poc.model.Hospital;
-import poc.model.Speciality;
 import poc.repository.HospitalRepository;
-import poc.util.GetHospitalWithSpecialityId;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
