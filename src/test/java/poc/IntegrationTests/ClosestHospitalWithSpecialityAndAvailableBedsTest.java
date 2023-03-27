@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import poc.util.FindClosestHospitalWithSpecialityAndAvailableBeds;
+import poc.util.ClosestHospitalWithSpecialityAndAvailableBeds;
 
 import java.text.MessageFormat;
 import java.time.Duration;
@@ -14,7 +14,7 @@ import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FindClosestHospitalWithSpecialityAndAvailableBedsTest {
+public class ClosestHospitalWithSpecialityAndAvailableBedsTest {
     static Instant startedAt;
 
     @BeforeAll
@@ -33,7 +33,7 @@ public class FindClosestHospitalWithSpecialityAndAvailableBedsTest {
         //Arrange - See @CsvSource
 
         //Act
-        String nameHospital = FindClosestHospitalWithSpecialityAndAvailableBeds.name(latitude, longitude, specialityName);
+        String nameHospital = ClosestHospitalWithSpecialityAndAvailableBeds.name(latitude, longitude, specialityName);
 
         //Asserts
         assertEquals(expectResult, nameHospital);

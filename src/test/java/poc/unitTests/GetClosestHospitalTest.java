@@ -4,6 +4,8 @@ import poc.model.Hospital;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import poc.util.DatabaseUtils;
+import poc.util.HospitalUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -37,7 +39,7 @@ public class GetClosestHospitalTest {
         //Arrange - See @CsvSource
 
         //Act
-        String hospitalName = GetClosestHospital.FromFile(latitudePosition, longitudePosition, allHospitals).getName();
+        String hospitalName = HospitalUtils.GetClosestHospitalFromFile(latitudePosition, longitudePosition, allHospitals).getName();
 
         //Asserts
         assertEquals(expectResult, hospitalName);
@@ -49,7 +51,7 @@ public class GetClosestHospitalTest {
         //Arrange - See @CsvSource
 
         //Act
-        String hospitalName = GetClosestHospital.FromFile(latitudePosition, longitudePosition, ConnectToPostgreSQL.ToGetHospitalsDatas()).getName();
+        String hospitalName = HospitalUtils.GetClosestHospitalFromFile(latitudePosition, longitudePosition, DatabaseUtils.ConnectToGetHospitalsDatas()).getName();
 
         //Asserts
         assertEquals(expectResult, hospitalName);

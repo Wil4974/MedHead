@@ -34,7 +34,7 @@ public class GetDistanceBetweenTwoPointsTest {
         double distance;
 
         //Act
-        distance = GetDistance.BetweenTwoPoints(latitude, longitude, latitude2, longitude2);
+        distance = poc.util.DistanceUtils.CalculBetweenTwoPoints(latitude, longitude, latitude2, longitude2);
 
         //Asserts
         assertEquals(expectResult, distance);

@@ -7,6 +7,7 @@ import poc.repository.SpecialityRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import poc.util.SpecialityUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -45,7 +46,7 @@ public class GetSpecialityNameWithSpecialityIdTest {
         int id;
 
         //Act
-        id = GetSpecialityIdWithSpecialityName.FromFile(specialityName, allSpecialities);
+        id = SpecialityUtils.GetIdWithSpecialityNameFromFile(specialityName, allSpecialities);
 
         //Asserts
         assertEquals(expectResult, id);
@@ -57,7 +58,7 @@ public class GetSpecialityNameWithSpecialityIdTest {
         int id;
 
         //Act
-        id = GetSpecialityIdWithSpecialityName.FromDataBase(specialityName);
+        id = SpecialityUtils.GetIdWithSpecialityNameFromDataBase(specialityName);
 
         //Asserts
         assertEquals(expectResult, id);
