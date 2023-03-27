@@ -1,11 +1,11 @@
 package poc.unitTests;
 
 import poc.model.Hospital;
-import poc.util.ConnectToPostgreSQL;
-import poc.util.GetHospitalsWithAvailableBeds;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import poc.util.DatabaseUtils;
+import poc.util.HospitalUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -38,7 +38,7 @@ public class GetHospitalsWithAvailableBedsTest {
         //Arrange - See @CsvSource
 
         //Act
-        List<Hospital> hospitalsWithAvailableBeds = GetHospitalsWithAvailableBeds.FromFile(allHospitals);
+        List<Hospital> hospitalsWithAvailableBeds = HospitalUtils.GetHospitalsWithAvailableBedsFromFile(allHospitals);
 
         //Asserts
         assertEquals(expectResult, hospitalsWithAvailableBeds.size());
@@ -49,7 +49,7 @@ public class GetHospitalsWithAvailableBedsTest {
         //Arrange - See @CsvSource
 
         //Act
-        List<Hospital> hospitalsWithAvailableBeds = GetHospitalsWithAvailableBeds.FromFile(ConnectToPostgreSQL.ToGetHospitalsDatas());
+        List<Hospital> hospitalsWithAvailableBeds = HospitalUtils.GetHospitalsWithAvailableBedsFromFile(DatabaseUtils.ConnectToGetHospitalsDatas());
 
         //Asserts
         assertEquals(expectResult, hospitalsWithAvailableBeds.size());
