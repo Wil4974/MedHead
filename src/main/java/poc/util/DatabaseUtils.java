@@ -26,10 +26,10 @@ public class DatabaseUtils {
                     "wil");
 
             Statement stmt = conn.createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM speciality");
+            ResultSet res = stmt.executeQuery("SELECT id, name FROM speciality");
 
             while(res.next())
-                allSpecialities.add(new Speciality(res.getInt(1), res.getString(2), res.getString(3)));
+                allSpecialities.add(new Speciality(res.getInt(1), res.getString(2)));
 
             conn.close();
 

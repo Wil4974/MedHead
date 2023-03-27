@@ -13,16 +13,13 @@ public class Speciality {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(length = 50, nullable = false)
-    private String groupName;
-    @Column(length = 50, nullable = false)
     private String name;
 
     public Speciality(){};
 
-    public Speciality(int id, String groupName, String name){
+    public Speciality(int id, String name){
         super();
         this.id = id;
-        this.groupName = groupName;
         this.name = name;
     };
 }

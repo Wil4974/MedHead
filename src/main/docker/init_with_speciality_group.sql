@@ -1,12 +1,13 @@
 CREATE TABLE public.speciality (
 	id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	groupname varchar(50) NOT NULL,
 	name varchar(50) NOT NULL
 );
 
-insert into public.speciality  (name)
-values ('Cardiologie'),
-		('Immunologie'),
-		('Neuropathologie diagnostique');
+insert into public.speciality  (groupname, name)
+values ('Groupe de médecine générale', 'Cardiologie'),
+		('Groupe de pathologie', 'Immunologie'),
+		('Groupe de pathologie', 'Neuropathologie diagnostique');
 
 CREATE TABLE public.hospital (
 	id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,

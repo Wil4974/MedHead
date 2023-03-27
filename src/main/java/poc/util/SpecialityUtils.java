@@ -19,7 +19,7 @@ public class SpecialityUtils {
                 .filter(n -> n.getName()
                         .equals(specialityName))
                 .findFirst()
-                .orElse(new poc.model.Speciality(0, "Pas de groupe", "Pas en base"))
+                .orElse(new poc.model.Speciality(0, "Pas en base"))
                 .getId();
     }
 }
