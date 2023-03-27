@@ -1,9 +1,14 @@
 package poc.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Hospital")
+@AllArgsConstructor
 public class Hospital {
 
     @Id
@@ -16,18 +21,15 @@ public class Hospital {
     private double longitude;
     private int availableBeds;
 
-    private String specialities;
+    @ManyToMany
+    @JoinTable(
+            name = "hospital_specialities",
+            joinColumns = @JoinColumn(name = "hospital_id"),
+            inverseJoinColumns = @JoinColumn(name = "speciality_id")
+    )
+    private List<Speciality> specialities;
 
     public Hospital() {
-    }
-
-    public Hospital(int id, String name, double latitude, double longitude, int availableBeds, String specialities) {
-        this.id = id;
-        this.name = name;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.availableBeds = availableBeds;
-        this.specialities = specialities;
     }
 
     public Hospital(int id, String name, double latitude, double longitude, int availableBeds) {
@@ -36,6 +38,7 @@ public class Hospital {
         this.latitude = latitude;
         this.longitude = longitude;
         this.availableBeds = availableBeds;
+        this.specialities = new ArrayList<>();
     }
 
     public String getName() {
@@ -60,7 +63,7 @@ public class Hospital {
 
     @ManyToOne
     @JoinColumn(name = "Speciality.Id")
-    public String getSpecialities() {
+    public List<Speciality> getSpecialities() {
         return specialities;
     }
 }

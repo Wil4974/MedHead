@@ -29,9 +29,9 @@ public class GetSpecialityNameWithSpecialityIdTest {
     static public void initStartingTime() {
         System.out.println("Appel avant tous les tests");
         startedAt = Instant.now();
-        allSpecialities.add(new Speciality(1, "Groupe de médecine générale", "Cardiologie"));
-        allSpecialities.add(new Speciality(2,"Groupe de pathologie", "Immunologie"));
-        allSpecialities.add(new Speciality(3, "Groupe de pathologie", "Neuropathologie diagnostique"));
+        allSpecialities.add(new Speciality(1, "Cardiologie"));
+        allSpecialities.add(new Speciality(2, "Immunologie"));
+        allSpecialities.add(new Speciality(3, "Neuropathologie diagnostique"));
     }
 
     @BeforeEach

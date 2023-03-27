@@ -1,0 +1,15 @@
+<dataset>
+    <speciality id="1" name="Cardiologie"/>
+    <speciality id="2" name="Immunologie"/>
+    <speciality id="3" name="Neuropathologie diagnostique"/>
+
+    <hospital id="1" name="Fred Brooks" latitude="51.4739" longitude="-0.0684" availableBeds="2"/>
+    <hospital id="2" name="Julia Crusher" latitude="51.47303" longitude="-0.01523" availableBeds="0"/>
+    <hospital id="3" name="Beverly Bashir" latitude="51.5031" longitude="-0.1528" availableBeds="5"/>
+
+    <hospital_specialities hospital_id="1" speciality_id="1"/>
+    <hospital_specialities hospital_id="1" speciality_id="2"/>
+    <hospital_specialities hospital_id="2" speciality_id="1"/>
+    <hospital_specialities hospital_id="3" speciality_id="2"/>
+    <hospital_specialities hospital_id="3" speciality_id="3"/>
+</dataset>

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -14,7 +16,8 @@ public class Speciality {
     private int id;
     @Column(length = 50, nullable = false)
     private String name;
-
+    @ManyToMany(mappedBy = "specialities")
+    private List<Hospital> hospitals;
     public Speciality(){};
 
     public Speciality(int id, String name){
