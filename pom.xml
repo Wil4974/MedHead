@@ -13,6 +13,9 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>medhead</name>
   <description>Proof Of Concept for MedHead</description>
+  <properties>
+    <java.version>19</java.version>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
