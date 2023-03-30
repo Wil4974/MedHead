@@ -4,7 +4,7 @@ Contenu livrables?
 -lien vers github action
 -
 -Dans github, 
-    -README.txt
+    -README.txt -> DONE
         -lancement docker
         -installation dev pour contribution
         -Prerequis - java, docker, etc
@@ -21,6 +21,6 @@ Test API?
 -envoyer mauvaise requete pour verifier si erreur attendues
 
 
-Renommer classe en Hospital et les methodes
-renvoyer message clair pour code erreur
+Renommer classe en Hospital et les methodes -> DONE
+renvoyer message clair pour code erreur 
 Coverage en maven + lancer sous github
