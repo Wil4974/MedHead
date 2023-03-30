@@ -6,14 +6,27 @@ on:
       - restart
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          java-version: '17'
+
+      - name: Set up Maven 3.9
+        uses: cesarferreira/setup-maven@v1
+        with:
+          maven-version: '3.9.0'
+
+      - name: Tests
+        run: mvn test
+
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-
-      - name: Tests
-        run: mvn test
 
       - name: Build
         run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
