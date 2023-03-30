@@ -12,8 +12,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Run docker-compose
-        run: |
-          docker-compose run -f "src/main/docker/docker-compose.yml" --rm app mvn test
-          docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
+      - name: Tests
+        run: docker-compose run -f "src/main/docker/docker-compose.yml" --rm app mvn test
+
+      - name: Build
+        run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
 
