@@ -18,6 +18,7 @@
     <maven.version>3.0.3</maven.version>
     <maven.compiler.source>19</maven.compiler.source>
     <maven.compiler.target>19</maven.compiler.target>
+    <maven.compiler.release>19</maven.compiler.release>
   </properties>
   <dependencies>
     <dependency>
