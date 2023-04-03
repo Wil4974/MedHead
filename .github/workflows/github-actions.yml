@@ -6,15 +6,6 @@ on:
       - master
 
 jobs:
-  database:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: wil
-          POSTGRES_PASSWORD: wil
-          POSTGRES_DB: medhead
 
   test:
     runs-on: ubuntu-latest
