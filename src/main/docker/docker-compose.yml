@@ -17,7 +17,7 @@ services:
 
   test:
     build: .
-    command: clean test jacoco:report
+    command: mvn clean test jacoco:report
     depends_on:
       - db
 
