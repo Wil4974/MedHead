@@ -6,28 +6,42 @@ on:
       - master
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+
+      - name: Set up Maven
+        uses: apache/maven-setup-action@v2
+        with:
+          maven-version: '3.8.7'
+
+      - name: Launch tests
+        Run: mvn clean test jacoco:report
+
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code 
         uses: actions/checkout@v3
 
-      - name: Set up JDK 19
+      - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
-          java-version: '19'
+          java-version: '17'
 
       - name: Set up Maven
         uses: apache/maven-setup-action@v2
         with:
-          maven-version: '3.10.0'
+          maven-version: '3.8.7'
 
-      - name: Run docker-compose
-        run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
+      - name: Launch app
+        run: mvn clean install
 
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run tests
-        run: docker-compose up -f "src/main/docker/docker-compose.yml" run test
 
