@@ -14,7 +14,8 @@
   <name>medhead</name>
   <description>Proof Of Concept for MedHead</description>
   <properties>
-    <java.version>1.19</java.version>
+    <java.version>19</java.version>
+    <maven.version.release>3.10.0</maven.version.release>
   </properties>
   <dependencies>
     <dependency>
