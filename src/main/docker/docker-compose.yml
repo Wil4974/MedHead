@@ -15,12 +15,6 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  test:
-    build: .
-    command: mvn clean test jacoco:report
-    depends_on:
-      - db
-
 networks:
   postgres-network:
     driver: bridge
