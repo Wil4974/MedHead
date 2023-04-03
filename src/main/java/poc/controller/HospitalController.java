@@ -24,13 +24,15 @@ public class HospitalController {
     private HospitalService hospitalService;
 
     @GetMapping("/all")
-    public List<Hospital> getAllHospitals(){
-        return hospitalService.getHospitals();
+    public ResponseEntity<List<Hospital>> getAllHospitals(){
+        return new ResponseEntity<>(hospitalService.getHospitals(), HttpStatus.OK);
     }
 
     @GetMapping("/{latitude}/{longitude}/{specialityName}")
-    public String findClosestHospitalsWithSpecialityAndAvailableBeds(@PathVariable double latitude, @PathVariable double longitude, @PathVariable String specialityName){
-
-        return hospitalService.getClosestHospitalsWithRightSpecialityAndAvailableBeds(latitude, longitude, specialityName);
+    public ResponseEntity<String> findClosestHospitalsWithSpecialityAndAvailableBeds(@PathVariable Double latitude, @PathVariable Double longitude, @PathVariable String specialityName){
+        if (latitude == null || longitude == null || specialityName == null) {
+            return new ResponseEntity<>("Missing parameters", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(hospitalService.getClosestHospitalsWithRightSpecialityAndAvailableBeds(latitude, longitude, specialityName), HttpStatus.OK);
     }
 }

@@ -24,13 +24,13 @@ public class SpecialityController {
     private SpecialityService specialityService;
 
     @GetMapping("/all")
-    public List<Speciality> getAllspecialities(){
-        return specialityService.getSpecialities();
+    public ResponseEntity<List<Speciality>> getAllspecialities(){
+        return new ResponseEntity<List<Speciality>>(specialityService.getSpecialities(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
     public ResponseEntity<Speciality> createSpeciality(@RequestBody Speciality speciality){
         Speciality newSpeciality = specialityService.addSpeciality(speciality);
-        return ResponseEntity.ok(newSpeciality);
+        return new ResponseEntity<Speciality>(newSpeciality, HttpStatus.OK);
     }
 }
