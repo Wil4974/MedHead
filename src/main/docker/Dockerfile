@@ -8,5 +8,5 @@ FROM postgres:latest
 ENV POSTGRES_USER=wil
 ENV POSTGRES_PASSWORD=wil
 ENV POSTGRES_DB=medhead
-COPY src/main/docker/init.sql /docker-entrypoint-initdb.d/
+COPY init.sql /docker-entrypoint-initdb.d/
 EXPOSE 5432
