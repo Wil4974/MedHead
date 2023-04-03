@@ -6,9 +6,9 @@ on:
       - master
 
 jobs:
-  database:
+  build:
     runs-on: ubuntu-latest
-    steps:
+    services:
       postgres:
         image: postgres:latest
         env:
