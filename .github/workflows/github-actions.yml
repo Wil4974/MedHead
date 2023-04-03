@@ -7,7 +7,7 @@ on:
 
 jobs:
   database:
-    - steps:
+    steps:
       - name: Check out code
         uses: actions/checkout@v3
 
