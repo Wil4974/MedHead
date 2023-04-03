@@ -28,7 +28,12 @@ jobs:
           distribution: 'temurin'
 
       - name: Launch tests
-        uses: database
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          POSTGRES_USER: wil
+          POSTGRES_PASSWORD: wil
+          POSTGRES_DB: medhead
         run: mvn clean test jacoco:report
 
 
