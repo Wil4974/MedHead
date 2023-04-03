@@ -28,6 +28,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Launch tests
+        uses: database
         run: mvn clean test jacoco:report
 
 
