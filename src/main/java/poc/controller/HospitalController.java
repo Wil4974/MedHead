@@ -30,6 +30,7 @@ public class HospitalController {
 
     @GetMapping("/{latitude}/{longitude}/{specialityName}")
     public String findClosestHospitalsWithSpecialityAndAvailableBeds(@PathVariable double latitude, @PathVariable double longitude, @PathVariable String specialityName){
+
         return hospitalService.getClosestHospitalsWithRightSpecialityAndAvailableBeds(latitude, longitude, specialityName);
     }
 }
