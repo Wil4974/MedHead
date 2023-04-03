@@ -23,7 +23,7 @@ jobs:
           maven-version: '3.8.7'
 
       - name: Launch tests
-        Run: mvn clean test jacoco:report
+        run: mvn clean test jacoco:report
 
   build:
     runs-on: ubuntu-latest
