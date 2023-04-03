@@ -35,7 +35,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build Docker image
-        run: docker build -f "docker/dockerfile" -t mypostgres .
+        run: docker build -f "dockerfile" -t mypostgres .
 
       - name: Run database
         run: docker run --name mypostgres -d mypostgres
