@@ -8,7 +8,7 @@ on:
 jobs:
   database:
     runs-on: ubuntu-latest
-    services:
+    steps:
       postgres:
         image: postgres:latest
         env:
