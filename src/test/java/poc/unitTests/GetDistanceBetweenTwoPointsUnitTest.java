@@ -13,7 +13,7 @@ import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GetDistanceBetweenTwoPointsTest {
+public class GetDistanceBetweenTwoPointsUnitTest {
     static Instant startedAt;
 
     @BeforeAll
@@ -23,7 +23,7 @@ public class GetDistanceBetweenTwoPointsTest {
     }
 
     @BeforeEach
-    public void initLookingForTheClosestHospitalTest() {
+    public void initLookingForTheClosestHospitalUnitTest() {
         System.out.println("Début des tests");
     }
 

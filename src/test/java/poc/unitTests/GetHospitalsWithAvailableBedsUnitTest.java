@@ -3,8 +3,7 @@ package poc.unitTests;
 import poc.model.Hospital;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import poc.util.DatabaseUtils;
+import org.junit.jupiter.params.provider.ValueSource;
 import poc.util.HospitalUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,11 +13,10 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-public class GetClosestHospitalTest {
+
+public class GetHospitalsWithAvailableBedsUnitTest {
     static Instant startedAt;
     static List<Hospital> allHospitals = new ArrayList<>();
-    double latitudePosition = 51.48312;
-    double longitudePosition = -0.11593;
 
     @BeforeAll
     static public void initStartingTime() {
@@ -30,35 +28,23 @@ public class GetClosestHospitalTest {
     }
 
     @BeforeEach
-    public void getClosestHospitalTest() {
+    public void getHospitalsWithAvailableBedsTest() {
         System.out.println("Début des tests");
     }
-    @ParameterizedTest(name = "Hôpital le plus proche depuis le point 51.48312:-0.11593 est {0}.")
-    @CsvSource({"Beverly Bashir"})
-    public void getClosestHospitalFromFile(String expectResult){
+    @ParameterizedTest(name = "{0} hôpitaux ont des lits disponibles ")
+    @ValueSource(ints = {2})
+    public void getHospitalsWithAvailableBedsFromFile(int expectResult){
         //Arrange - See @CsvSource
 
         //Act
-        String hospitalName = HospitalUtils.GetClosestHospitalFromFile(latitudePosition, longitudePosition, allHospitals).getName();
+        List<Hospital> hospitalsWithAvailableBeds = HospitalUtils.GetHospitalsWithAvailableBedsFromFile(allHospitals);
 
         //Asserts
-        assertEquals(expectResult, hospitalName);
-    }
-
-    @ParameterizedTest(name = "Hôpital le plus proche depuis le point 51.48312:-0.11593 est {0}.")
-    @CsvSource({"Beverly Bashir"})
-    public void getClosestHospitalFromDataBase(String expectResult){
-        //Arrange - See @CsvSource
-
-        //Act
-        String hospitalName = HospitalUtils.GetClosestHospitalFromFile(latitudePosition, longitudePosition, DatabaseUtils.ConnectToGetHospitalsDatas()).getName();
-
-        //Asserts
-        assertEquals(expectResult, hospitalName);
+        assertEquals(expectResult, hospitalsWithAvailableBeds.size());
     }
 
     @AfterEach
-    public void undefGetClosestHospitalTest() {
+    public void undefGetHospitalsWithAvailableBedsTest() {
         System.out.println("Fin des tests");
     }
 

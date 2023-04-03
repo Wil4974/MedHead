@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
-public class GetSpecialityNameWithSpecialityIdTest {
+public class GetSpecialityNameWithSpecialityIdUnitTest {
 
     @Autowired
     private SpecialityRepository specialityRepository;
@@ -29,13 +29,13 @@ public class GetSpecialityNameWithSpecialityIdTest {
     static public void initStartingTime() {
         System.out.println("Appel avant tous les tests");
         startedAt = Instant.now();
-        allSpecialities.add(new Speciality(1, "Groupe de médecine générale", "Cardiologie"));
-        allSpecialities.add(new Speciality(2,"Groupe de pathologie", "Immunologie"));
-        allSpecialities.add(new Speciality(3, "Groupe de pathologie", "Neuropathologie diagnostique"));
+        allSpecialities.add(new Speciality(1, "Cardiologie"));
+        allSpecialities.add(new Speciality(2,"Immunologie"));
+        allSpecialities.add(new Speciality(3, "Neuropathologie diagnostique"));
     }
 
     @BeforeEach
-    public void getSpecialityNameTest() {
+    public void initGetSpecialityNameTest() {
         System.out.println("Début des tests");
     }
 
@@ -51,19 +51,6 @@ public class GetSpecialityNameWithSpecialityIdTest {
         //Asserts
         assertEquals(expectResult, id);
     }
-    @ParameterizedTest(name = "Id {0} pour la spécialité {1}")
-    @CsvSource({"2, Immunologie", "0, Pas en base", "1, Cardiologie"})
-    public void getSpecialityNameWithSpecialityIdFromDataBase(int expectResult, String specialityName){
-        //Arrange - See @CsvSource
-        int id;
-
-        //Act
-        id = SpecialityUtils.GetIdWithSpecialityNameFromDataBase(specialityName);
-
-        //Asserts
-        assertEquals(expectResult, id);
-    }
-
 
     @AfterEach
     public void undefGetSpecialityNameTest() {

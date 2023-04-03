@@ -1,14 +1,14 @@
-package poc.unitTests;
+package poc.functionalTests;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import poc.model.Hospital;
-import poc.repository.HospitalRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import poc.model.Hospital;
+import poc.repository.HospitalRepository;
 import poc.util.HospitalUtils;
 
 import java.text.MessageFormat;
@@ -19,7 +19,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GetHospitalsWithSpecialityIdTest {
+public class GetHospitalsWithSpecialityIdFunctionnalTest {
     static Instant startedAt;
 
     @Autowired
@@ -35,7 +35,7 @@ public class GetHospitalsWithSpecialityIdTest {
     }
 
     @BeforeEach
-    public void getClosestHospitalTest() {
+    public void initGetHospitalsWithSpecialityIdFunctionnalTest() {
         System.out.println("Début des tests");
     }
 
