@@ -6,6 +6,14 @@ on:
       - master
 
 jobs:
+  database:
+    - steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Run docker-compose
+        run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
+
   test:
     runs-on: ubuntu-latest
     steps:
@@ -34,6 +42,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          distribution: 'temurin'
 
       - name: Set up Maven
         uses: apache/maven-setup-action@v2
