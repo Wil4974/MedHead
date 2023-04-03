@@ -6,17 +6,24 @@ on:
       - master
 
 jobs:
-  database:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-
-      - name: Launch container database
-        run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
-
   test:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: wil
+          POSTGRES_PASSWORD: wil
+          POSTGRES_DB: medhead
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -27,13 +34,19 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Launch tests
-        env:
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_USER: wil
-          POSTGRES_PASSWORD: wil
-          POSTGRES_DB: medhead
-        run: mvn clean test jacoco:report
+      - name: Build Docker image
+        run: docker build -t mypostgres .
+
+      - name: Run database
+        run: docker run --name mypostgres -d mypostgres
+
+      - name: Wait for database to start
+        run: docker exec mypostgres pg_isready -U myuser
+
+      - name: Run tests
+        run: mvn test -Dspring.datasource.url=jdbc:postgresql://localhost:5432/medhead -Dspring.datasource.username=wil -Dspring.datasource.password=wil
+
+      - name: Stop database
+        run: docker stop mypostgres
 
 
