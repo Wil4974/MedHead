@@ -41,7 +41,7 @@ jobs:
         run: docker run --name mypostgres -d mypostgres
 
       - name: Wait for database to start
-        run: docker exec mypostgres pg_isready -U wil -P wil
+        run: docker exec mypostgres pg_isready -U wil
 
       - name: Run tests
         run: mvn test -Dspring.datasource.url=jdbc:postgresql://localhost:5432/medhead -Dspring.datasource.username=wil -Dspring.datasource.password=wil
