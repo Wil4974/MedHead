@@ -26,11 +26,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up Maven
-        uses: apache/maven-setup-action@v2
-        with:
-          maven-version: '3.8.7'
-
       - name: Launch tests
         run: mvn clean test jacoco:report
 
