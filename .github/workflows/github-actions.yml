@@ -6,6 +6,14 @@ on:
       - master
 
 jobs:
+  database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Launch container database
+        run: docker run -d -p 5432:5432 -e POSTGRES_USER=wil -e POSTGRES_PASSWORD=wil -e POSTGRES_DB=medhead postgres:latest
 
   test:
     runs-on: ubuntu-latest
