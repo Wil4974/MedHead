@@ -6,24 +6,13 @@ on:
       - master
 
 jobs:
+  runs-on: ubuntu-latest
+
+  services:
+    db:
+      image: postgres:latest
+
   test:
-    runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: wil
-          POSTGRES_PASSWORD: wil
-          POSTGRES_DB: medhead
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -34,19 +23,20 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build Docker image
-        run: docker build  -t mypostgres ./src/main/docker
-
-      - name: Run database
-        run: docker run --name mypostgres -d mypostgres
-
-      - name: Wait for database to start
-        run: docker exec mypostgres pg_isready -U wil
-
       - name: Run tests
-        run: mvn test -Dspring.datasource.url=jdbc:postgresql://localhost:5432/medhead -Dspring.datasource.username=wil -Dspring.datasource.password=wil
+        run: mvn clean test
 
-      - name: Stop database
-        run: docker stop mypostgres
+  build:
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Run build
+        run: mvn clean install
 

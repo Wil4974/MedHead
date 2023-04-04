@@ -15,6 +15,15 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
+  app:
+    image: 'app:latest'
+    build:
+      context: ./
+    container_name: app
+    depends_on:
+      - db
+    command: mvn clean install
+
 networks:
   postgres-network:
     driver: bridge

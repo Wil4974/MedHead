@@ -18,7 +18,7 @@ On some READMEs, you may see small images that convey metadata, such as whether 
 # Installation
 
 Cette POC est développé en Java avec le framework Spring Boot et la base de données est conteneurisée. Pour pouvoir la lancer, il est donc nécessaire d'installer :
--Java 19
+-Java 17
 -Docker
 
 # Usage
