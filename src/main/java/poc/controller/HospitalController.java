@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import poc.apiError.BadRequestException;
 import poc.apiError.ErrorMessage;
 import poc.model.Hospital;
+import poc.model.Reservation;
 import poc.service.HospitalService;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -31,8 +33,16 @@ public class HospitalController {
     @GetMapping("/{latitude}/{longitude}/{specialityName}")
     public ResponseEntity<String> findClosestHospitalsWithSpecialityAndAvailableBeds(@PathVariable Double latitude, @PathVariable Double longitude, @PathVariable String specialityName){
         if (latitude == null || longitude == null || specialityName == null) {
-            return new ResponseEntity<>("Missing parameters", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Paramètres manquants", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(hospitalService.getClosestHospitalsWithRightSpecialityAndAvailableBeds(latitude, longitude, specialityName), HttpStatus.OK);
+    }
+
+    @PostMapping("/reservation/{hospitalName}")
+    public ResponseEntity<String> sentReservation(@RequestBody String hospitalName) {
+        if (hospitalName == null) {
+            return new ResponseEntity<>("Nom de l'hôpital manquant", HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.ok("La réservation pour " + hospitalName + " est envoyée.");
     }
 }

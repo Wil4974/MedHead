@@ -4,6 +4,7 @@ import poc.model.Hospital;
 import poc.repository.HospitalRepository;
 import org.springframework.stereotype.Service;
 import poc.util.ClosestHospitalWithSpecialityAndAvailableBeds;
+import poc.util.SentReservation;
 
 import java.util.List;
 
@@ -11,11 +12,18 @@ import java.util.List;
 public class HospitalService {
     private HospitalRepository hospitalRepository;
 
+    public HospitalService(HospitalRepository hospitalRepository) {
+        this.hospitalRepository = hospitalRepository;
+    }
     public List<Hospital> getHospitals() {
         return hospitalRepository.findAll();
     }
 
     public String getClosestHospitalsWithRightSpecialityAndAvailableBeds(double latitude, double longitude, String specialityName) {
-        return ClosestHospitalWithSpecialityAndAvailableBeds.name(latitude, longitude, specialityName);
+
+        String hospitalName = ClosestHospitalWithSpecialityAndAvailableBeds.name(latitude, longitude, specialityName);
+        SentReservation.ToHospital(hospitalName);
+
+        return hospitalName;
     }
 }
