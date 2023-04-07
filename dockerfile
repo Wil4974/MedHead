@@ -1,5 +1,9 @@
-FROM openjdk:17-alpine
-ARG JAR_FILE=*.jar
-COPY ${JAR_FILE} application.jar
-ENTRYPOINT ["java", "-jar", "application.jar"]
-ENV JAVA_HOME=/etc/java/java-17-openjdk
+FROM openjdk:latest
+
+RUN apt-get update && apt-get install -y maven
+
+WORKDIR /app
+
+COPY . /app
+
+CMD ["mvn", "clean", "package"]
