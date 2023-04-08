@@ -6,21 +6,41 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import poc.apiError.BadRequestException;
 import poc.apiError.ErrorMessage;
+import poc.apiError.NotFoundException;
 import poc.model.Hospital;
-import poc.model.Reservation;
 import poc.service.HospitalService;
+import poc.util.DatabaseUtils;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping("/hospital")
 public class HospitalController {
 
+    public String hospitalName;
+
     @ExceptionHandler(BadRequestException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
     public ResponseEntity<ErrorMessage> handleBadRequestException(BadRequestException ex) {
         ErrorMessage error = new ErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ResponseEntity<ErrorMessage> handleBadRequestException(NotFoundException ex) {
+        ErrorMessage error = new ErrorMessage(HttpStatus.NOT_FOUND, ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InternalError.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ResponseEntity<ErrorMessage> handleBadRequestException(InternalError ex) {
+        ErrorMessage error = new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
     @Autowired
     private HospitalService hospitalService;
@@ -38,11 +58,14 @@ public class HospitalController {
         return new ResponseEntity<>(hospitalService.getClosestHospitalsWithRightSpecialityAndAvailableBeds(latitude, longitude, specialityName), HttpStatus.OK);
     }
 
-    @PostMapping("/reservation/{hospitalName}")
-    public ResponseEntity<String> sentReservation(@RequestBody String hospitalName) {
+    @PostMapping("/reservation/{name}")
+    public ResponseEntity<String> sentReservation(@PathVariable String name) {
+
+        hospitalName = name;
+
         if (hospitalName == null) {
             return new ResponseEntity<>("Nom de l'hôpital manquant", HttpStatus.BAD_REQUEST);
         }
-        return ResponseEntity.ok("La réservation pour " + hospitalName + " est envoyée.");
+        return new ResponseEntity<>(DatabaseUtils.AddReservation(hospitalName), HttpStatus.OK);
     }
 }
