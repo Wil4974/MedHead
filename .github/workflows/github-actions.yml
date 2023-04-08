@@ -1,45 +1,16 @@
-name: Build and Deploy
+name: Launch containers and test them
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
-  build-and-deploy:
+  Build-and-test:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: wil
-          POSTGRES_PASSWORD: wil
-          POSTGRES_DB: medhead
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Build Docker image
-        run: docker build -t my-image .
-
-      - name: Start Docker container
-        run: docker run -d -p 8080:8080 --name my-container --link postgres my-image
-
-      - name: Wait for container to start
-        run: docker logs -f my-container | grep "database system is ready to accept connections"
-
-      - name: Run Maven tests
-        run: docker exec my-container mvn test -Dspring.datasource.url=jdbc:postgresql://postgres:5432/medhead -Dspring.datasource.username=wil -Dspring.datasource.password=wil
-
-      - name: Deploy application
-        if: ${{ job.status == 'success' }}
-        run: docker exec my-container mvn clean package -DskipTests && java -jar /app/target/my-app.jar
+      - uses: actions/checkout@v3
+      - name: Build the stack
+        run: docker-compose up -d
+      - name: Test
+        run: docker run --network container:webapp-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/
