@@ -14,3 +14,11 @@ jobs:
  
       - name: Run docker-compose
         run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
+  
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        run: docker-compose up -f "src/main/docker/docker-compose.yml" run test
+
+
