@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  Build end test:
+  Build-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
