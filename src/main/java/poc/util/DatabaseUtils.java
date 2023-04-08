@@ -3,10 +3,7 @@ package poc.util;
 import poc.model.Hospital;
 import poc.model.Speciality;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,5 +88,26 @@ public class DatabaseUtils {
             System.out.println(e);
         }
         return allHospitals;
+    }
+
+    public static String AddReservation (String hospitalName) {
+        try
+        {
+            Class.forName("org.postgresql.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medhead","wil","wil");
+
+            Statement stmt = conn.createStatement();
+            ResultSet res = stmt.executeQuery("INSERT INTO reservation VALUES(" + hospitalName + "; ");
+
+            String sql = "INSERT INTO reservation (hopsitalName) VALUES('" + hospitalName + "'); ";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, hospitalName);
+
+            int rowsInserted = statement.executeUpdate();
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return ("Hôpital " + hospitalName + " a bien reçu votre réservation de lit.");
     }
 }
