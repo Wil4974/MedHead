@@ -13,4 +13,4 @@ jobs:
       - name: Build the stack
         run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
       - name: Test
-        run: docker run
+        run: docker run test
