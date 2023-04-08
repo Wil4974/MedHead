@@ -9,8 +9,10 @@ jobs:
   Build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Build the stack
-        run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
-      - name: Test
-        run: docker run test
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build and test with Maven
+        run: |
+          docker run -d -p 5432:5432 -e POSTGRES_USER=wil -e POSTGRES_PASSWORD=wil -e POSTGRES_DB=medhead postgres:latest
+          mvn clean test -Dspring.profiles.active=test -Dspring.datasource.url=jdbc:postgresql://localhost:5432/medhead -Dspring.datasource.username=wil -Dspring.datasource.password=wil
