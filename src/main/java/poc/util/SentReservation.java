@@ -18,7 +18,7 @@ public class SentReservation{
 
         String json = String.format("{\"nom\": \"%s\"}", hospitalName);
 
-        HttpPost request = new HttpPost("http://localhost:8080/hospital/nom");
+        HttpPost request = new HttpPost("http://localhost:8080/reservation/nom");
         StringEntity params = null;
 
         try {

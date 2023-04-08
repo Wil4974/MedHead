@@ -1,6 +1,7 @@
 package poc.apiError;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
 public class ErrorMessage {
     private HttpStatus status;
