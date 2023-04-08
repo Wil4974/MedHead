@@ -38,11 +38,6 @@ public class HospitalController {
     @Autowired
     private HospitalService hospitalService;
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Hospital>> getAllHospitals(){
-        return new ResponseEntity<>(hospitalService.getHospitals(), HttpStatus.OK);
-    }
-
     @GetMapping("/{latitude}/{longitude}/{specialityName}")
     public ResponseEntity<String> findClosestHospitalsWithSpecialityAndAvailableBeds(@PathVariable Double latitude, @PathVariable Double longitude, @PathVariable String specialityName){
         if (latitude == null || longitude == null || specialityName == null) {
