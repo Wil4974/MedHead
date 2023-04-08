@@ -6,20 +6,11 @@ on:
       - master
 
 jobs:
-  Build-and-test:
+  build:
     runs-on: ubuntu-latest
-    steps:   
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '17'
-          cache: 'maven'
-          
-      - name: Checkout code
+    steps:
+      - name: Check out code 
         uses: actions/checkout@v3
-
-      - name: Build and test with Maven
-   
-        run: |
-          docker run -d -p 5432:5432 -e POSTGRES_USER=wil -e POSTGRES_PASSWORD=wil -e POSTGRES_DB=medhead postgres:latest
-          mvn clean test -Dspring.profiles.active=test -Dspring.datasource.url=jdbc:postgresql://localhost:5432/medhead -Dspring.datasource.username=wil -Dspring.datasource.password=wil
+ 
+      - name: Run docker-compose
+        run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
