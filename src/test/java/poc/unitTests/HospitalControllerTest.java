@@ -31,8 +31,8 @@ public class HospitalControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(hospitalController).build();
     }
     @Test
-    public void getAllHospitalsTest() throws Exception {
-        mockMvc.perform(get("/hospital/all"))
+    public void sentReservationTest() throws Exception {
+        mockMvc.perform(post("/hospital/reservation/Julia Crusher"))
                 .andExpect(status()
                 .isOk());
     }
