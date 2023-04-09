@@ -16,7 +16,12 @@ CREATE TABLE public.hospital (
   	availableBeds int NOT NULL
 );
 
-insert into public.hospital (name, latitude, longitude, available_beds)
+CREATE TABLE public.reservation (
+	id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	hospitalName varchar(50) NOT NULL
+);
+
+insert into public.hospital (name, latitude, longitude, availableBeds)
 values ('Fred Brooks', '51.4739', '-0.0684', '2'),
 		('Julia Crusher', '51.47303', '-0.01523', '0'),
         ('Beverly Bashir', '51.5031', '-0.1528', '5');
@@ -24,7 +29,7 @@ values ('Fred Brooks', '51.4739', '-0.0684', '2'),
 CREATE TABLE public.hospitalSpecialities (
   hospitalId int NOT NULL,
   specialityId int NOT NULL,
-  PRIMARY KEY (hospital_id, speciality_id),
+  PRIMARY KEY (hospitalId, specialityId),
   CONSTRAINT hospitalid FOREIGN KEY (hospitalId) REFERENCES hospital (id),
   CONSTRAINT specialityid FOREIGN KEY (specialityId) REFERENCES speciality (id)
 );

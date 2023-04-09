@@ -20,34 +20,24 @@ public class HospitalController {
     public String hospitalName;
 
     @ExceptionHandler(BadRequestException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    public ResponseEntity<ErrorMessage> handleBadRequestException(BadRequestException ex) {
-        ErrorMessage error = new ErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-    }
 
-    @ExceptionHandler(NotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ResponseBody
-    public ResponseEntity<ErrorMessage> handleBadRequestException(NotFoundException ex) {
-        ErrorMessage error = new ErrorMessage(HttpStatus.NOT_FOUND, ex.getMessage());
-        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(InternalError.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
-    public ResponseEntity<ErrorMessage> handleBadRequestException(InternalError ex) {
-        ErrorMessage error = new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
-        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
     @Autowired
     private HospitalService hospitalService;
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Hospital>> getAllHospitals(){
-        return new ResponseEntity<>(hospitalService.getHospitals(), HttpStatus.OK);
+    public ResponseEntity handleBadRequestException(BadRequestException ex) {
+        ErrorMessage error = new ErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+    
+    @ExceptionHandler(value = NotFoundException.class)
+    public ResponseEntity handleBadRequestException(NotFoundException notFoundException) {
+        return new ResponseEntity<>("La page demandées est introuvable.", HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InternalError.class)
+    public ResponseEntity<ErrorMessage> handleBadRequestException(InternalError ex) {
+        ErrorMessage error = new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/{latitude}/{longitude}/{specialityName}")

@@ -1,8 +1,13 @@
 package poc.apiError;
 
 public class NotFoundException extends RuntimeException {
+    private String message;
+
     public NotFoundException(String message) {
         super(message);
-        System.out.println("La page demandées est introuvable.");
+        this.message = message;
+    }
+
+    public NotFoundException() {
     }
 }
