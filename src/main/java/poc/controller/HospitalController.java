@@ -20,11 +20,15 @@ public class HospitalController {
     public String hospitalName;
 
     @ExceptionHandler(BadRequestException.class)
+
+    @Autowired
+    private HospitalService hospitalService;
+
     public ResponseEntity handleBadRequestException(BadRequestException ex) {
         ErrorMessage error = new ErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
-
+    
     @ExceptionHandler(value = NotFoundException.class)
     public ResponseEntity handleBadRequestException(NotFoundException notFoundException) {
         return new ResponseEntity<>("La page demandées est introuvable.", HttpStatus.NOT_FOUND);
@@ -35,8 +39,6 @@ public class HospitalController {
         ErrorMessage error = new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    @Autowired
-    private HospitalService hospitalService;
 
     @GetMapping("/{latitude}/{longitude}/{specialityName}")
     public ResponseEntity<String> findClosestHospitalsWithSpecialityAndAvailableBeds(@PathVariable Double latitude, @PathVariable Double longitude, @PathVariable String specialityName){
