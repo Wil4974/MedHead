@@ -36,14 +36,9 @@ jobs:
         uses: stCarolas/setup-maven@v4.5
         with:
           maven-version: 3.8.2
-          
-      - name: Build project
-        run: mvn -B clean package -DskipTests
+
+      - name: Run docker-compose
+        run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
 
       - name: Run tests
-        env:
-          DATABASE_URL: postgres://wil:wil@localhost/medhead
-        run: mvn clean test -Dspring.datasource.url=$DATABASE_URL
-          
-      - name: Launch app
-        run: mvn clean install d -p 5432:5432 -e POSTGRES_USER=wil -e POSTGRES_PASSWORD=wil -e POSTGRES_DB=medhead postgres:latest
+        run: docker-compose up -f "src/main/docker/docker-compose.yml" run test
