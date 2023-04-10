@@ -38,10 +38,7 @@ jobs:
           maven-version: 3.8.2
 
       - name: Run tests
-        run: mvn clean test
-        env:
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
+        run: mvn clean test -Dspring.datasource.url=jdbc:postgresql://localhost:5432/medhead -Dspring.datasource.username=wil -Dspring.datasource.password=wil
 
       - name: Launch app
         run: mvn clean install
