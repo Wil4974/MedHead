@@ -39,7 +39,12 @@ jobs:
 
       - name: Run tests
         run: mvn clean test
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
 
       - name: Launch app
         run: mvn clean install
-
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
