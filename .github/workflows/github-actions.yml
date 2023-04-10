@@ -39,8 +39,10 @@ jobs:
 
       - name: Run tests
         run: mvn clean test 
-        env: 
-          DATABASE_DSN: "user=wil host=localhost password=wil port=5432 database=medhead sslmode=disable"
-
+        env:
+          POSTGRES_USER: wil
+          POSTGRES_PASSWORD: wil
+          POSTGRES_DATABASE: medhead
+          
       - name: Launch app
         run: mvn clean install d -p 5432:5432 -e POSTGRES_USER=wil -e POSTGRES_PASSWORD=wil -e POSTGRES_DB=medhead postgres:latest
