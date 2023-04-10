@@ -38,11 +38,9 @@ jobs:
           maven-version: 3.8.2
 
       - name: Run tests
-        run: mvn clean test 
         env:
-          POSTGRES_USER: wil
-          POSTGRES_PASSWORD: wil
-          POSTGRES_DATABASE: medhead
+          DATABASE_URL: postgres://wil:wil@localhost/medhead
+        run: mvn clean test -Dspring.datasource.url=$DATABASE_URL
           
       - name: Launch app
         run: mvn clean install d -p 5432:5432 -e POSTGRES_USER=wil -e POSTGRES_PASSWORD=wil -e POSTGRES_DB=medhead postgres:latest
