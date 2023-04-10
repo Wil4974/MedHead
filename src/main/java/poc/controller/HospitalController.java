@@ -19,11 +19,11 @@ public class HospitalController {
 
     public String hospitalName;
 
-    @ExceptionHandler(BadRequestException.class)
 
     @Autowired
     private HospitalService hospitalService;
 
+    @ExceptionHandler(BadRequestException.class)
     public ResponseEntity handleBadRequestException(BadRequestException ex) {
         ErrorMessage error = new ErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);

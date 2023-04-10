@@ -1,12 +1,16 @@
 package poc.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Speciality {
 
     @Id
@@ -14,12 +18,4 @@ public class Speciality {
     private int id;
     @Column(length = 50, nullable = false)
     private String name;
-
-    public Speciality(){};
-
-    public Speciality(int id, String name){
-        super();
-        this.id = id;
-        this.name = name;
-    };
 }
