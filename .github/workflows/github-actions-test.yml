@@ -30,3 +30,6 @@ jobs:
       - name: Run tests
         run: mvn clean test
 
+      - name: Launch app
+        run: mvn clean install
+
