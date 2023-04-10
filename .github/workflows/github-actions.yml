@@ -36,6 +36,9 @@ jobs:
         uses: stCarolas/setup-maven@v4.5
         with:
           maven-version: 3.8.2
+          
+      - name: Build project
+        run: mvn -B clean package -DskipTests
 
       - name: Run tests
         env:
