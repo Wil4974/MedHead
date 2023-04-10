@@ -6,19 +6,30 @@ on:
       - master
 
 jobs:
-  build:
+  container-job:
     runs-on: ubuntu-latest
-    steps:
-      - name: Check out code 
-        uses: actions/checkout@v3
- 
-      - name: Run docker-compose
-        run: docker-compose up -f "src/main/docker/docker-compose.yml" up -d --build
-  
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run tests
-        run: docker-compose up -f "src/main/docker/docker-compose.yml" run test
+    container: node:10.18-jessie
 
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: wil
+          POSTGRES_PASSWORD: wil
+          POSTGRES_DATABASE: medhead
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Run tests
+        run: mvn clean test
+
+      - name: Launch app
+        run: mvn clean install
 
